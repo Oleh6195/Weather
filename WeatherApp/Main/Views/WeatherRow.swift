@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  WeatherRow.swift
 //  WeatherApp
 //
 //  Created by Олег on 25.10.2019.
@@ -8,14 +8,20 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct WeatherRow: View {
+    
+//    var dayForecast: [HourForecast]
+    
     var body: some View {
-        Text("Hello World")
+        
+        Text("dava")
+        
+
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct WeatherRow_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        WeatherRow()
     }
 }
