@@ -25,7 +25,7 @@ final class WeatherListViewModel: ObservableObject{
     }
     
     func fetchWeather(){
-        WeatherLoader.shared.load(city: "Lviv", apiKey: "669faae0776c30d4412765bf4439aa4c") { (forecast) in
+        Repository.shared.loadForecastFromJson(city: "Lviv", apiKey: "669faae0776c30d4412765bf4439aa4c") { (forecast) in
             self.forecast = forecast
         }
     }

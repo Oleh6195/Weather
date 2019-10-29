@@ -9,8 +9,31 @@
 import SwiftUI
 
 struct CurrentWeatther: View {
+    @ObservedObject var w: CurrentWeatherViewModel = CurrentWeatherViewModel()
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello World!"/*@END_MENU_TOKEN@*/)
+        VStack(alignment: .center, spacing: 8) {
+            Text((w.currentWeather?.name ?? ""))
+                .font(.largeTitle)
+
+            Text("Sunny")
+                .font(.body)
+
+            Text("\(Int(round((w.currentWeather?.main.temp_max) ?? 0)))°")
+                .font(Font.custom("verylarge", size: 90))
+                .fontWeight(.ultraLight)
+
+
+//            HStack(spacing: 300) {
+//                Text("Sunday")
+//                HStack {
+//                    Text("22")
+//                    Text("7")
+//                }
+//            }
+//            .padding(.top, 80)
+        }
+
     }
 }
 

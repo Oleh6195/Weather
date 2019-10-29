@@ -32,11 +32,12 @@ extension MainWeatherData: Decodable{
 }
 
 
-struct HourForecast {
+struct HourForecast: Identifiable {
+    let id = UUID()
     var main: MainWeatherData
     var weather: [Weather]
     var wind: Wind
-    var time: String
+    var time: DateComponents
     
     enum CodingKeys: String, CodingKey {
         case main
@@ -44,6 +45,7 @@ struct HourForecast {
         case wind
         case time = "dt_txt"
     }
+
 }
 extension HourForecast: Decodable{
     init(from decoder: Decoder) throws {
@@ -51,8 +53,15 @@ extension HourForecast: Decodable{
         self.main = try container.decode(MainWeatherData.self, forKey: .main)
         self.weather = try container.decode([Weather].self, forKey: .weather)
         self.wind = try container.decode(Wind.self, forKey: .wind)
-        self.time = try container.decode(String.self, forKey: .time)
+        let t = try container.decode(String.self, forKey: .time)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd' 'HH:mm:ss"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        let calendar = Calendar.current
+        self.time = calendar.dateComponents([.year, .month, .day, .hour], from: dateFormatter.date(from:t)!)
+
     }
 }
+
 
 

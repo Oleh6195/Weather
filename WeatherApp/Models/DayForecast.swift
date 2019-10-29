@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+
+struct DayForecast: Identifiable{
+    var id = UUID()
+    
+    var hours: [HourForecast] = []
+}
